@@ -84,7 +84,7 @@
                                 @endguest
 
                                 @auth
-
+                                
 
 								<li class="has-dropdown">
                                     <a href="#" style="color: rgb(9, 255, 0); font-weight:bold;">{{auth()->user()->name}}</a>
