@@ -13,6 +13,32 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+//****** Test Comments ******/
+// use App\Models\Comment;
+// use App\Models\User;
+// use App\Models\Post;
+
+// Route::get('/insert', function () {
+//     // $comment = Comment::create(['the_comment' => 'FOR Swimming',
+//     // 'post_id' => 2,
+//     // 'user_id' => 1]);
+
+//     // $comment = Comment::find(3);
+//     // return $comment->post;
+//     // $post = Post::find(1);
+//     // return $post->comments;
+//     $user = User::find(1);
+//     return $user->comments;
+// });
+// Route::get('/show', function () {
+//     $comment = Comment::find(3);
+//     return $comment;
+// });
+
+//****** End Test Coments ******/
+
+
 Route::get('/', function () {
     return view('home');
 })->name("home");

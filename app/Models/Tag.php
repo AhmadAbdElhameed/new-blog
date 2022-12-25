@@ -7,14 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 use App\Models\Post;
 
-class Category extends Model
+class Tag extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name','slug'];
-
-    
     public function posts(){
-        return $this->hasMany(Post::class);
+        return $this -> belongsToMany(Post::class);
     }
+
 }
