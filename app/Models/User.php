@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Role;
+use App\Models\Post;
 
 class User extends Authenticatable
 {
@@ -45,5 +46,8 @@ class User extends Authenticatable
 
     public function role(){
         return $this->belongsTo(Role::class);
+    }
+    public function posts(){
+        return $this->hasMany(Post::class);
     }
 }
