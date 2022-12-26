@@ -15,9 +15,11 @@ use Illuminate\Support\Facades\Route;
 
 
 //****** Test Comments ******/
-// use App\Models\Comment;
-// use App\Models\User;
-// use App\Models\Post;
+use App\Models\Comment;
+use App\Models\User;
+use App\Models\Post;
+use App\Models\Category;
+use App\Models\Image;
 
 // Route::get('/insert', function () {
 //     // $comment = Comment::create(['the_comment' => 'FOR Swimming',
@@ -37,6 +39,34 @@ use Illuminate\Support\Facades\Route;
 // });
 
 //****** End Test Coments ******/
+
+//******  Test Images ******/
+Route::get('/createpost', function () {
+    // $post = Post::create([
+    //     'title' =>'This is image post',
+    //     'slug'=> 'image slug',
+    //     'excerpt'=> 'image excerpt',
+    //     'body'=> 'image body',
+    //     'user_id'=> 1,
+    //     'category_id'=> Category::find(1)->id
+    // ]);
+    // $post -> image() -> create(['name' => 'random file',
+    //                         'extension'=>'jpg',
+    //                         'path'=>'/images/random_file.jpg']);
+
+
+    // $user = User::find(1);
+    // $user -> image() -> create(['name' => 'random file for user',
+    //                         'extension'=>'jpg',
+    //                         'path'=>'/images/random_file.jpg']);
+
+    $image = Image::find(1);
+    return $image -> imageable;
+
+
+});
+
+//****** End Test Images ******/
 
 
 Route::get('/', function () {
