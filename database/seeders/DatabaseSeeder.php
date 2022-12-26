@@ -40,7 +40,7 @@ class DatabaseSeeder extends Seeder
         foreach($users as $user){
             $user->image()->save(\App\Models\Image::factory()->make());
         }
-        $posts = \App\Models\Post::factory(100)->create();
+        $posts = \App\Models\Post::factory(10)->create();
         \App\Models\Tag::factory(20)->create();
         \App\Models\Comment::factory(100)->create();
         \App\Models\Category::factory(10)->create();
