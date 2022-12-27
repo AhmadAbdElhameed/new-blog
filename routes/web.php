@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PostsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,11 +16,10 @@ use App\Http\Controllers\HomeController;
 |
 */
 
+
 Route::get('/', [HomeController::class,'index'])->name("home");
 
-Route::get('/post', function () {
-    return view('post');
-})->name("post");
+Route::get('/posts/{post:slug}',[PostsController::class,'show'])->name("posts.show");
 
 Route::get('/contact', function () {
     return view('contact');
@@ -43,11 +43,11 @@ require __DIR__.'/auth.php';
 
 
 //****** Test Comments ******/
-use App\Models\Comment;
-use App\Models\User;
-use App\Models\Post;
-use App\Models\Category;
-use App\Models\Image;
+// use App\Models\Comment;
+// use App\Models\User;
+// use App\Models\Post;
+// use App\Models\Category;
+// use App\Models\Image;
 
 // Route::get('/insert', function () {
 //     // $comment = Comment::create(['the_comment' => 'FOR Swimming',

@@ -121,7 +121,7 @@ Single Post
             <!-- SIDEBAR: start -->
             <div class="col-md-4 animate-box">
                 <div class="sidebar">
-                    <div class="side">
+                    {{-- <div class="side">
                         <h3 class="sidebar-heading">Categories</h3>
                         <div class="block-24">
                         <ul>
@@ -178,7 +178,13 @@ Single Post
                             <li><a href="#">codehack</a></li>
                         </ul>
                     </div>
-                    </div>
+                    </div> --}}
+                        {{--  MUST BE DOUBLE COTATION "" --}}
+                        <x-blog.side-categories :categories="$categories"/>
+
+                        <x-blog.side-recent-posts :recentPosts="$recent_posts"/>
+
+                        <x-blog.side-tags :tags="$tags"/>
                 </div>
             </div>
         </div>
