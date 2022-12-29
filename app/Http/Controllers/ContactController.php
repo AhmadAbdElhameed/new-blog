@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
+use App\Mail\Test;
 use App\Models\Contact;
 class ContactController extends Controller
 {
@@ -20,6 +22,9 @@ class ContactController extends Controller
             'message' => 'required|min:5|max:300',
         ])
         );
+
+        Mail::to("abdelhameed9@yahoo.com")->send(new Test('Ahmad'));
+
         return redirect()->route('contact.create')->with('success' , "Your message has been sent .");
     }
 }
