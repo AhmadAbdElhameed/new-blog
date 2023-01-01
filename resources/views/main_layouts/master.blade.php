@@ -70,11 +70,11 @@
 							<ul>
 								<li><a href="{{route('home')}}">Home</a></li>
 								<li class="has-dropdown">
-									<a href="courses.html">Categories</a>
+									<a href="{{route('categories.index')}}">Categories</a>
 									<ul class="dropdown">
-										<li><a href="#">Programming</a></li>
-										<li><a href="#">Games</a></li>
-										<li><a href="#">Soft Skills</a></li>
+                                        @foreach ($navbar_categories as $categories)
+										    <li><a href="{{route('categories.show',$categories)}}">{{$categories->name}}</a></li>
+                                        @endforeach
 									</ul>
 								</li>
 								<li><a href="{{route('about')}}">About</a></li>

@@ -32,6 +32,7 @@ Route::post('/contact', [ContactController::class , 'store'])->name("contact.sto
 Route::get('/about', AboutController::class)->name("about");
 
 Route::get('/categories/{category:slug}',[CategoryController::class,'show'])->name("categories.show");
+Route::get('/categories}',[CategoryController::class,'index'])->name("categories.index");
 ///  /tags/{tag:slug}  === SHOULD BE /tags/{tag:name}
 Route::get('/tags/{tag:name}',[TagController::class,'show'])->name("tags.show");
 
