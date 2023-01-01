@@ -97,3 +97,11 @@ Single Post
     </div>
 </div>
 @endsection
+
+@section('custom_js')
+<script>
+    setTimeout(() => {
+        $(".global-message").fadeOut();
+    }, 5000);
+</script>
+@endsection

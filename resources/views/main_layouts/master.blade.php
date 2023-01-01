@@ -44,6 +44,7 @@
 
 	<!-- Theme style  -->
 	<link rel="stylesheet" href="{{asset('blog_template/css/style.css')}}">
+	<link rel="stylesheet" href="{{asset('css/custom.css')}}">
 
 	<!-- Modernizr JS -->
 	<script src="{{asset('blog_template/js/modernizr-2.6.2.min.js')}}"></script>
@@ -273,6 +274,9 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<script src="{{asset('blog_template/js/jquery.countTo.js')}}"></script>
 	<!-- Main -->
 	<script src="{{asset('blog_template/js/main.js')}}"></script>
+	<script src="{{asset('js/functions.js')}}"></script>
+
+    @yield('custom_js')
 
 	</body>
 </html>
