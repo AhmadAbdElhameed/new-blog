@@ -26,7 +26,8 @@ class ContactController extends Controller
 
         Contact::create($attributes);
 
-        Mail::to("abdelhameed9@yahoo.com")->send(new ContactMail(
+        // adding out email in ".env' file as "ADMIN_EMAIL"
+        Mail::to(end('ADMIN_EMAIL'))->send(new ContactMail(
             $attributes['first_name'],
             $attributes['last_name'],
             $attributes['email'],
