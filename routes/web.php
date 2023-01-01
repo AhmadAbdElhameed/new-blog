@@ -7,6 +7,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\TagController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,6 +31,9 @@ Route::post('/contact', [ContactController::class , 'store'])->name("contact.sto
 
 Route::get('/about', AboutController::class)->name("about");
 
+Route::get('/categories/{category:slug}',[CategoryController::class,'show'])->name("categories.show");
+///  /tags/{tag:slug}  === SHOULD BE /tags/{tag:name}
+Route::get('/tags/{tag:name}',[TagController::class,'show'])->name("tags.show");
 
 require __DIR__.'/auth.php';
 
