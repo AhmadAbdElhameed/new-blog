@@ -92,10 +92,10 @@ return [
     */
 
     'from' => [
-        'address' => 'contact@myblog.com',
-        'name' => 'My Blog Contact',
+        'address' => 'contact@sameh_blog.com',
+        'name' => 'Sameh Blog Contact',
     ],
-    'from' => ['address' => 'contact@myblog.com', 'name' => 'My Blog Contact'],
+    'from' => ['address' => 'contact@sameh_blog.com', 'name' => 'Sameh Blog Contact'],
     /*
     |--------------------------------------------------------------------------
     | Markdown Mail Settings
