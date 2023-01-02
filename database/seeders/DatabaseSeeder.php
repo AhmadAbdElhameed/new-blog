@@ -42,9 +42,9 @@ class DatabaseSeeder extends Seeder
         }
         \App\Models\Category::factory(10)->create();
 
-        $posts = \App\Models\Post::factory(50)->create();
+        $posts = \App\Models\Post::factory(70)->create();
 
-        \App\Models\Comment::factory(100)->create();
+        \App\Models\Comment::factory(200)->create();
 
         \App\Models\Tag::factory(20)->create();
 

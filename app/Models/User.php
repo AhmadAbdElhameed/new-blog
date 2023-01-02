@@ -11,6 +11,7 @@ use App\Models\Role;
 use App\Models\Post;
 use App\Models\Comment;
 use App\Models\Image;
+use App\Models\Category;
 
 class User extends Authenticatable
 {
@@ -61,4 +62,7 @@ class User extends Authenticatable
         return $this -> morphOne(Image::class,'imageable');
     }
 
+    public function categories(){
+        return $this->hasMany(Category::class);
+    }
 }

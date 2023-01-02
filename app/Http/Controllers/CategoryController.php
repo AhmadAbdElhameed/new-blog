@@ -23,7 +23,7 @@ class CategoryController extends Controller
 
         return view('categories.show' , [
             'category'=>$category,
-            'posts'=>$category->posts()->paginate(7),
+            'posts'=>$category->posts()->paginate(10),
             'recent_posts' => $recent_posts,
             'categories' => $categories,
             'tags' => $tags
