@@ -9,6 +9,8 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TagController;
+use App\Http\Controllers\AdminControllers\DashboardController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,11 +34,23 @@ Route::post('/contact', [ContactController::class , 'store'])->name("contact.sto
 Route::get('/about', AboutController::class)->name("about");
 
 Route::get('/categories/{category:slug}',[CategoryController::class,'show'])->name("categories.show");
-Route::get('/categories}',[CategoryController::class,'index'])->name("categories.index");
+Route::get('/categories',[CategoryController::class,'index'])->name("categories.index");
 ///  /tags/{tag:slug}  === SHOULD BE /tags/{tag:name}
 Route::get('/tags/{tag:name}',[TagController::class,'show'])->name("tags.show");
 
+
+// Admin Dashboard
+//Route::get('/admin',[DashboardController::class,'index'])->name("admin.index");
+Route::get('/admin',[DashboardController::class,'index'])->name("admin.index");
+
+
+
+
+
+
 require __DIR__.'/auth.php';
+
+
 
 
 
