@@ -35,6 +35,8 @@ class DatabaseSeeder extends Seeder
 
         // create roles and users
         \App\Models\Role::factory(1)->create();
+        \App\Models\Role::factory(1)->create(['name' => 'author']);
+        \App\Models\Role::factory(1)->create(['name' => 'admin']);
         $users = \App\Models\User::factory(10)->create();
 
         foreach($users as $user){

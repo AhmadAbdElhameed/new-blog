@@ -41,8 +41,12 @@ Route::get('/tags/{tag:name}',[TagController::class,'show'])->name("tags.show");
 
 // Admin Dashboard
 //Route::get('/admin',[DashboardController::class,'index'])->name("admin.index");
-Route::get('/admin',[DashboardController::class,'index'])->name("admin.index");
 
+Route::prefix('admin')->name('admin.')->middleware(['auth','isadmin'])->group(function(){
+
+    Route::get('/',[DashboardController::class,'index'])->name("index");
+
+});
 
 
 
