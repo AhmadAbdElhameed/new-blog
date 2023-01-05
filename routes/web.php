@@ -10,6 +10,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\AdminControllers\DashboardController;
+use App\Http\Controllers\AdminControllers\AdminPostsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +46,8 @@ Route::get('/tags/{tag:name}',[TagController::class,'show'])->name("tags.show");
 Route::prefix('admin')->name('admin.')->middleware(['auth','isadmin'])->group(function(){
 
     Route::get('/',[DashboardController::class,'index'])->name("index");
+
+    Route::resource('posts',AdminPostsController::class);
 
 });
 
