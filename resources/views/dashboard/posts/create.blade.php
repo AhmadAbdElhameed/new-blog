@@ -8,22 +8,7 @@
     {{-- Stable wuth Tinymce version 5 not 6 --}}
     {{-- <script src="https://cdn.tiny.cloud/1/21oger5xyclar13jpk0cj0gf7uiuypz59kz0ybn013rfbeeg/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script> --}}
      <script src="https://cdn.tiny.cloud/1/21oger5xyclar13jpk0cj0gf7uiuypz59kz0ybn013rfbeeg/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-    {{-- <style>
-        .imageuploadify {
-            border: 2px dashed #d2d2d2;
-            position: relative;
-            min-height: 350px;
-            min-width: 250px;
-            max-width: 1000px;
-            margin: auto;
-            display: flex;
-            padding: 0;
-            flex-direction: column;
-            text-align: center;
-            background-color: #fff;
-            color: #007bff;
-        }
-    </style> --}}
+
 	@endsection
 		
 		@section("wrapper")
@@ -49,7 +34,7 @@
 				  <div class="card-body p-4">
 					  <h5 class="card-title">Add New Post</h5>
 					  <hr/>
-                        <form action = "{{route('admin.posts.store')}}" method ='POST'>
+                        <form action = "{{route('admin.posts.store')}}" method='post' enctype='multipart/form-data'>
                             @csrf
                             <div class="form-body mt-4">
                                 <div class="row">
@@ -58,17 +43,26 @@
 
                                             <div class="mb-3">
                                                 <label for="inputProductTitle" class="form-label">Post Title</label>
-                                                <input type="email" class="form-control" id="inputProductTitle" placeholder="Enter post title">
+                                                <input required value="{{old('title')}}" name="title" type="text" class="form-control" id="inputProductTitle" placeholder="Enter post title">
+                                                @error('title')
+                                                    <p class='text-danger'>{{ $message }}</p>
+                                                @enderror
                                             </div>
 
                                             <div class="mb-3">
                                                 <label for="inputProductDescription" class="form-label">Post Slug</label>
-                                                <textarea class="form-control" id="inputProductDescription" rows="3"></textarea>
+                                                <input required type="text" value="{{old('slug')}}" name="slug" class="form-control" id="post_slug" placeholder="Enter post slug">
+                                                @error('slug')
+                                                    <p class='text-danger'>{{ $message }}</p>
+                                                @enderror
                                             </div>
 
                                             <div class="mb-3">
                                                 <label for="inputProductDescription" class="form-label">Post Excerpt</label>
-                                                <textarea class="form-control" id="inputProductDescription" rows="3"></textarea>
+                                                <textarea required name="excerpt" class="form-control" id="inputProductDescription" rows="3">{{old('excerpt')}}</textarea>
+                                                @error('excerpt')
+                                                    <p class='text-danger'>{{ $message }}</p>
+                                                @enderror
                                             </div>
 
                                             <div class="mb-3">
@@ -77,11 +71,14 @@
                                                         <div class="card-body">
                                                             <div class="rounded">
                                                                 <div class="mb-3">
-                                                                    <select class="single-select">
+                                                                    <select required name='category_id' class="single-select">
                                                                         @foreach ($categories as $key => $category)
                                                                             <option value="{{ $key }}">{{ $category }}</option>
                                                                         @endforeach
                                                                     </select>
+                                                                    @error('category_id')
+                                                                        <p class='text-danger'>{{ $message }}</p>
+                                                                    @enderror
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -90,13 +87,23 @@
 
                                             <div class="mb-3">
                                                 <label for="inputProductDescription" class="form-label">Post Thumbanil</label>
-                                                <input id="image-uploadify" type="file" accept="image/*" multiple>
+                                                <input required value="{{old('thumbnail')}}"  name="thumbnail" id="thumbnail" type="file">
+                                                @error('thumbnail')
+                                                    <p class='text-danger'>{{ $message }}</p>
+                                                @enderror
                                             </div>
+                                            
+
 
                                             <div class="mb-3">
                                                 <label for="inputProductDescription" class="form-label">Post Content</label>
-                                                <textarea class="form-control" id="post_content" rows="3"></textarea>
+                                                <textarea name="body" class="form-control" id="post_content" rows="3">{{old('body')}}</textarea>
+
+                                                @error('body')
+                                                    <p class='text-danger'>{{ $message }}</p>
+                                                @enderror
                                             </div>
+                                            <button class='btn btn-primary' type='submit'>Add Post</button>
                                         </div>
                                     </div>
                                 </div>
@@ -120,8 +127,7 @@
 
 	<script>
 		$(document).ready(function () {
-			$('#image-uploadify').imageuploadify();
-		});
+		// 	$('#image-uploadify').imageuploadify();
 
         $('.single-select').select2({
 			theme: 'bootstrap4',
@@ -139,48 +145,13 @@
 
         tinymce.init({
             selector: '#post_content',
-            plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss',
-            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
-            tinycomments_mode: 'embedded',
-            tinycomments_author: 'Author name',
+            plugins: 'advlist autolink lists link image media charmap print preview hr anchor pagebreak',
+            toolbar_mode: 'floating',
+            height: '500',
+            toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image code | rtl ltr',
+            toolbar_mode: 'floating',
             image_title: true,
-            automatic_uploads:true,
-            mergetags_list: [
-                { value: 'First.Name', title: 'First Name' },
-                { value: 'Email', title: 'Email' },
-            ],
-
-
-            // images_upload_handler: function(blobinfo, success, failure)
-            // {
-            //     let formData = new FormData();
-            //     let _token = $("input[name='_token']").val();
-
-            //     let xhr = new XMLHttpRequest();
-            //     xhr.open('post',"{{ route('admin.upload_tinymce_image') }}");
-
-            //     xhr.onload = () => {
-            //         console.log( xhr.status )
-            //     }
-            //     formData.append('_token',_token);
-            //     formData.append('file',blobinfo.blob(), blobinfo.filename());
-            //     xhr.send(formData);
-            // }
-
-
-
-
-
-
-
-            // selector: '#post_content',
-            // plugins: 'advlist autolink lists link image media charmap print preview hr anchor pagebreak',
-            // toolbar_mode: 'floating',
-            // height: '500',
-            // toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image code | rtl ltr',
-            // toolbar_mode: 'floating',
-            // image_title: true,
-            // automatic_uploads: true,
+            automatic_uploads: true,
 
             images_upload_handler: function(blobinfo, success, failure)
             {
@@ -207,11 +178,13 @@
                 xhr.send( formData );
             }
 
-        });
+        }); // End of Tiny function
 
+        setTimeout(() => {
+            $(".general-message").fadeOut();
+        }, 5000);
 
-
-
+     });
 
 	</script>
 	@endsection

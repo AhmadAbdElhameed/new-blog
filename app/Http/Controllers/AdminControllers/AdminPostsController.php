@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Models\Category;
+use App\Models\Post;
 
 class AdminPostsController extends Controller
 {
@@ -14,6 +15,17 @@ class AdminPostsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    private $rules = [
+        'title' => 'required|max:200',
+        'slug' => 'required|max:200',
+        'excerpt' => 'required|max:300',
+        'category_id' => 'required|numeric',
+        'body' => 'required',
+        'thumbnail' => 'required|file|mimes:jpg,jpeg,svg,png,webp',
+
+    ];
+
     public function index()
     {
         return view('dashboard.posts.index');
@@ -38,9 +50,32 @@ class AdminPostsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+
+
+    public function store(Request $request){
+
+        $validated = $request->validate($this->rules);
+
+        $validated['user_id'] = auth()->id();
+
+        $post = Post::create($validated);
+
+        if ($request->has('thumbnail')){
+
+            $thumbnail = $request->file('thumbnail');
+            $filename = $thumbnail->getClientOriginalName();
+            $file_extension = $thumbnail->getClientOriginalExtension();
+            $path = $thumbnail->store('images',"public");
+
+            $post->image()->create([
+                'name' => $filename,
+                'extension' => $file_extension,
+                'path' => $path
+            ]);
+        }
+
+        return redirect()->route('admin.posts.create')->with('success',"The post has been created .");
+
     }
 
     /**
