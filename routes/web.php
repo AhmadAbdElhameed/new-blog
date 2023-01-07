@@ -11,6 +11,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\AdminControllers\DashboardController;
 use App\Http\Controllers\AdminControllers\AdminPostsController;
+use App\Http\Controllers\AdminControllers\TinyMCEController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,7 +49,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','isadmin'])->group(fu
     Route::get('/',[DashboardController::class,'index'])->name("index");
 
     Route::resource('posts',AdminPostsController::class);
-
+    Route::post('upload_tinymce_image',[TinyMCEController::class,'upload_tinymce_image'])->name('upload_tinymce_image');
 });
 
 
